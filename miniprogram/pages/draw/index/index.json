@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "brush-point": "/components/draw/brushPoint/index",
+    "color-box": "/components/draw/colorBox/index"
+  }
+}

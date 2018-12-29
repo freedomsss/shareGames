@@ -1,0 +1,55 @@
+<view class="container">
+   <view class="question-block">
+       <view class="uploader-image">
+           <image src="{{avatarUrl}}" mode="aspectFit" bindtap="previewImg"></image>
+       </view>
+       <view class="title">
+           题目：小鸟
+       </view>
+   </view>
+   <view class="draw-block">
+       <canvas
+         canvas-id="firstCanvas"
+         disable-scroll="true"
+         bindtouchstart="touchStart"
+         bindtouchmove="touchMove"
+         bindtouchend="touchEnd"
+       ></canvas>
+   </view>
+    <view class="brush-thickness-container">
+        <view class="brush-thickness-block">
+            <text class="brush-title">画笔粗细：</text>
+            <block wx:for="{{lineWidthArr.length}}" wx:key="index">
+                <brush-point
+                    class="brush-point"
+                    radius="{{lineWidthArr[index]}}"
+                    data-index="{{index}}"
+                    selected="{{index === curWidthIndex}}"
+                    bind:select="clickChangeWidth"
+                    color="{{currentColor}}"
+                ></brush-point>
+            </block>
+        </view>
+    </view>
+   <view class="brush-color-block">
+     <scroll-view scroll-x="true">
+       <block wx:for="{{avaliableColors}}" wx:key="index">
+         <color-box class="color-box"
+                    data-color="{{avaliableColors[index]}}"
+                    selected="{{avaliableColors[index] === currentColor}}"
+                    bind:select="clickChangeColor"
+         ></color-box>
+       </block>
+     </scroll-view>
+   </view>
+  <view class="utils-block">
+    <view catchtap="clickFallback">撤销</view>
+    <view catchtap="clickErase">橡皮擦</view>
+    <view catchtap="clickClearAll">清除</view>
+  </view>
+   <view class="start-game" bindtap='clickShare'>生成海报</view>
+  <view class="draw-block">
+    <canvas canvas-id="secondCanvas" disable-scroll="true">
+    </canvas>
+  </view>
+</view>
